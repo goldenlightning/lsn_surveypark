@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.cmb.surveypark.model">
+	<class name="Answer" table="answers">
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="answerIds" column="answerIds" type="string" length="100" />
+		<property name="otherAnswer" column="otherAnswer" type="string" length="100" />
+		<property name="uuid" column="uuid" type="string" length="50" />
+		<property name="answerTime" column="answerTime" type="timestamp"  />
+		<property name="questionId" column="questionId" type="integer"  />
+		<property name="surveyId" column="surveyId" type="integer"  />
+		
+		
+	</class>
+
+</hibernate-mapping>

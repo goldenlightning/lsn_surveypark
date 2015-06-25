@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.cmb.surveypark.model">
+	<class name="Page" table="pages">
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="title" column="title" type="string" length="100" />
+		<property name="description" column="description" type="string" length="200" />
+		
+		<!-- column属性和子元素是互斥的,只能用其一 -->
+		<property name="orderno" type="float" >
+			<!-- 显式指定字段类型 -->
+			<column name="orderno" sql-type="decimal(10,5)" />
+		</property>
+
+		<!--映射Page到Survey多对一关联关系-->
+		<many-to-one name="survey" class="Survey" column="surveyid" />
+		
+		<!-- inverse不维护更新 
+			从Page到Question一对多关联关系 -->
+		<set name="questions" inverse="true" order-by="id">
+			<key column="pageid" />
+			<one-to-many class="Question"/>
+		</set>
+		
+		
+	</class>
+
+</hibernate-mapping>
